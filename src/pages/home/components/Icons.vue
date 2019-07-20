@@ -1,6 +1,6 @@
 <template>
   <div class="icons">
-    <swiper>
+    <swiper :options="swiperOption">
       <swiper-slide v-for="(page, index) of pages" :key="index">
         <div class="icon" v-for="item of page" :key="item.id">
           <div class="icon-img">
@@ -16,56 +16,20 @@
 <script>
 export default {
   name: 'HomeIcons',
-  data () {
-    return {
-        iconList: [
-          {
-            id: '0001',
-            imgUrl: 'http://img1.qunarzz.com/piao/fusion/1803/95/f3dd6c383aeb3b02.png',
-            desc: '景点门票'
-          },
-          {
-            id: '0002',
-            imgUrl: 'http://img1.qunarzz.com/piao/fusion/1803/3e/86314b2af03b7502.png',
-            desc: '清凉玩水'
-          },
-          {
-            id: '0003',
-            imgUrl: 'http://img1.qunarzz.com/piao/fusion/1803/4d/a1eda1a2b8414302.png',
-            desc: '暑期夜场'
-          },
-          {
-            id: '0004',
-            imgUrl: 'http://img1.qunarzz.com/piao/fusion/1803/76/eb88861d78fb9902.png',
-            desc: '动植物园'
-          },
-          {
-            id: '0005',
-            imgUrl: 'http://img1.qunarzz.com/piao/fusion/1803/95/f3dd6c383aeb3b02.png',
-            desc: '景点门票'
-          },
-          {
-            id: '0006',
-            imgUrl: 'http://img1.qunarzz.com/piao/fusion/1803/3e/86314b2af03b7502.png',
-            desc: '清凉玩水'
-          },
-          {
-            id: '0007',
-            imgUrl: 'http://img1.qunarzz.com/piao/fusion/1803/4d/a1eda1a2b8414302.png',
-            desc: '暑期夜场'
-          },
-          {
-            id: '0008',
-            imgUrl: 'http://img1.qunarzz.com/piao/fusion/1803/76/eb88861d78fb9902.png',
-            desc: '动植物园'
-          }
-        ]
-    }
+  props: {
+    list: Array
+  },
+  data() {
+      return {
+        swiperOption: {
+          autoplay: false  //轮播图不自动滚动
+        }
+      }
   },
   computed: {
     pages () {
       const pages = []
-      this.iconList.forEach((item, index) => {
+      this.list.forEach((item, index) => {
         const page = Math.floor(index / 8)
         if(!pages[page]){
           pages[page] = []
@@ -85,7 +49,7 @@ export default {
       height: 0
       padding-bottom: 50%
     .icons
-        margin-top: .1rem
+        margin-top: .4rem
         .icon
             position: relative
             float: left
@@ -97,9 +61,9 @@ export default {
               top: 0
               left: 0
               right: 0
-              bottom: .44rem
+              bottom: .33rem
               box-sizing: border-box
-              padding: .1rem
+              padding: .2rem
               .icon-img-content
                 display: block 
                 margin: 0 auto
@@ -109,8 +73,8 @@ export default {
               left: 0
               right: 0
               bottom: 0
-              height: .44rem
-              line-height: .44rem
+              height: .33rem
+              line-height: .33rem
               text-align: center
               color: $darkTextColor
               ellipsis()

@@ -1,7 +1,7 @@
 <template>
 <diV class="swiper">
-  <swiper :options="swiperOption">
-    <swiper-slide v-for="item in swiperList" v-bind:key="item.id">
+  <swiper :options="swiperOption" v-if="showswiper">
+    <swiper-slide v-for="item in list" v-bind:key="item.id">
         <img class="swiper-img" :src="item.imgUrl" />
     </swiper-slide>
     <div class="swiper-pagination"  slot="pagination"></div>
@@ -12,23 +12,22 @@
 <script>
 export default {
     name: 'HomeSwiper',
+    props: {
+        list:Array
+    },
     data(){
         return{
             swiperOption:{
                 pagination: '.swiper-pagination',
                 loop: true,
-                autoplay:5000
-            },
-            swiperList: [
-                {
-                    id: '0001',
-                    imgUrl: 'http://mp-piao-admincp.qunarzz.com/mp_piao_admin_mp_piao_admin/admin/20197/ae8987bff39ff10e82675a3643154e66.jpg_750x200_0f187b2e.jpg'
-                },
-                {
-                    id: '0002',
-                    imgUrl: 'http://mp-piao-admincp.qunarzz.com/mp_piao_admin_mp_piao_admin/admin/20197/6e07f11d492a880c2b5fb9889b3cb008.jpg_750x200_e0e88021.jpg'
-                }
-            ]
+                autoplay:4000
+            }           
+        }
+    },
+    //计算属性（逻辑性的代码最好不要出现在上面的v-if中）
+    computed: {
+        showswiper () {
+            return this.list.length
         }
     }
 }
