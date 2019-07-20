@@ -58,12 +58,7 @@ export default {
             id: '0008',
             imgUrl: 'http://img1.qunarzz.com/piao/fusion/1803/76/eb88861d78fb9902.png',
             desc: '动植物园'
-          },
-          {
-            id: '0009',
-            imgUrl: 'http://mp-piao-admincp.qunarzz.com/mp_piao_admin_mp_piao_admin/admin/20193/a40ee278d67000f2a29d2e20f6a029b3.png',
-            desc: '自然风光'
-          },
+          }
         ]
     }
   },
@@ -89,7 +84,9 @@ export default {
     .icons >>> .swiper-container
       height: 0
       padding-bottom: 50%
-      .icon
+    .icons
+        margin-top: .1rem
+        .icon
             position: relative
             float: left
             width: 25%
