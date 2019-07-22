@@ -28,9 +28,15 @@ export default {
   },
   data () {
     return {
-        touchStatus: false
+        touchStatus: false,
+        startY: 0,
+        timer: null
     }
-  },methods: {
+  },
+  updatad () {
+    this.startY = this.$refs['A'][0].offsetTop
+  },
+  methods: {
     handleLetterClick (e) {
         this.$emit('change', e.target.innerText)
         //console.log(e.target.innerText)
@@ -39,15 +45,18 @@ export default {
         this.touchStatus = true
     },
     handleTouchMove (e) {
-        if(this.touchStatus = true){
-            const startY = this.$refs['A'][0].offsetTop
-            //console.log(startY)
-            const touchY = e.touches[0].clientY - 79
-            //console.log(touchY)
-            const index = Math.floor((touchY-startY) / 20)
-           // console.log(index)
-           if (index >= 0 && index < this.letters.length)
-           this.$emit('change', this.letters[index])
+       if (this.touchStatus) {
+            if (this.timer) {
+                clearTimeout(this.timer)
+            }
+            //节流
+            this.timer = setTimeout(() => {
+                const touchY = e.touches[0].clientY - 79
+                const index = Math.floor((touchY-this.startY) / 20)
+                if (index >= 0 && index < this.letters.length){
+                  this.$emit('change', this.letters[index])
+                }
+            }, 16)
         }
     },
     handleTouchEnd () {
