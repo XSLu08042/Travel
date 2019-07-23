@@ -9,7 +9,8 @@
         </diV>
         <router-link to='/city'>
             <div class="header-right">
-                {{this.city}}
+                <!--使用vuex之前 {{this.city}} -->
+                	 {{this.$store.state.city}}
                 <span class="iconfont arrow-icon">&#xe605;</span>
             </diV>
         </router-link>
@@ -19,14 +20,15 @@
 <script>
 export default {
   name: 'HomeHeader',
-  props: {
-      city: String
-  }
+//   props: {
+//       city: String
+//   } 使用vuex之前
 }
 </script>
 
 <style lang="stylus" scoped>
 @import '~styles/varibles.styl'
+@import '~styles/mixins.styl'
     .header
         display:flex 
         line-height: $headerHeight
