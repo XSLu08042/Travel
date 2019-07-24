@@ -10,7 +10,9 @@
         <router-link to='/city'>
             <div class="header-right">
                 <!--使用vuex之前 {{this.city}} -->
-                	 {{this.$store.state.city}}
+                <!-- 使用下面city计算属性之前{{this.$store.state.city}} -->
+                {{this.city}}
+                 <!-- {{this.doubleCity}} -->
                 <span class="iconfont arrow-icon">&#xe605;</span>
             </diV>
         </router-link>
@@ -18,11 +20,21 @@
 </template>
 
 <script>
+import { mapState, mapGetters } from 'vuex'
+
 export default {
-  name: 'HomeHeader',
+    name: 'HomeHeader',
 //   props: {
 //       city: String
 //   } 使用vuex之前
+    computed: {
+        //展开运算符
+        ...mapState(['city']),
+        //mapState指把vuex里面的数据映射到这个组建的 computed 计算属性中，
+        //这里就是吧city这个公用数据映射到一个名字叫city的计算属性中
+        ...mapGetters(['doubleCity'])
+        //与store里index.js中getters相对应
+   }
 }
 </script>
 
@@ -51,7 +63,8 @@ export default {
             border-radius: .50rem
             color: #ccc
         .header-right
-            width: 1.24rem
+            min-width: 1.04rem
+            padding: 0 .1rem
             float: right 
             text-align: center
             color: white
