@@ -20,7 +20,8 @@
 </template>
 
 <script>
-import { mapState, mapGetters } from 'vuex'
+//要用store里index.js中getters就要引入mapGetters
+import { mapState } from 'vuex'
 
 export default {
     name: 'HomeHeader',
@@ -32,7 +33,7 @@ export default {
         ...mapState(['city']),
         //mapState指把vuex里面的数据映射到这个组建的 computed 计算属性中，
         //这里就是吧city这个公用数据映射到一个名字叫city的计算属性中
-        ...mapGetters(['doubleCity'])
+       // ...mapGetters(['doubleCity'])
         //与store里index.js中getters相对应
    }
 }
