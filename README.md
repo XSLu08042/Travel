@@ -4,6 +4,10 @@
 
 慕课网实战（vue2.5 去哪儿）
 
+## 项目预览
+
+![travel项目预览](https://github.com/XSLu08042/Travel/blob/master/travel_vue.gif?raw=true "markdown")
+
 ## Build Setup
 
 ``` bash
